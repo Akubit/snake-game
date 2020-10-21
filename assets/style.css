@@ -1,0 +1,31 @@
+ :root {
+     --green1 : #9bbc0f;
+     --green2 : #8bac0f;
+     --green3 : #467513;
+     --green4 : #0f380f;
+ }
+ 
+ .grid {
+    background-color: var(--green1);
+    width: 75vmin;
+    height: 75vmin;
+    display: grid;
+    border: 2vmin solid var(--green4);
+    margin: 0 auto;
+ }
+
+ .grid div {
+     border: var(--green1) 2px solid;
+ }
+
+ .grid .cell {
+    background-color: var(--green2);
+ }
+ .grid .snake {
+    background-color: var(--green4);
+ }
+
+ .grid .apple {
+    box-shadow: inset var(--green2) 1vmin 1vmin, inset var(--green2) -1vmin -1vmin ;
+    background-color: var(--green3);
+ }
