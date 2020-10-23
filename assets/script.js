@@ -2,6 +2,8 @@
 const grid = document.querySelector(".grid")
 const start = document.getElementById("start")
 const restart = document.getElementById("restart")
+const startBtn = document.getElementById("startBtn")
+const restartBtn = document.getElementById("restartBtn")
 const score = document.getElementById("score")
 const area = 15
 let squares = []
@@ -35,6 +37,7 @@ function move() {
         (squares[snake[0] + direction].classList.contains('snake'))
         ){
             console.log('Perdu !')
+            restart.style.display = 'block'
             return clearInterval(timerId)
         }
 
@@ -91,11 +94,29 @@ function control(e) {
 //Start Game 
 function startGame () {
     //Snake creation
+    snake = [2,1,0]
+    direction = 1
+    speed = 666
+    points = 0
+    apple = randomApple()
     snake.forEach(index => squares[index].classList.add('snake'))
     timerId = setInterval(move, speed)
     createApples()
+    start.style.display = 'none'
+}
+
+//Start Game 
+function restartGame () {
+    //Snake creation
+    snake.forEach(index => squares[index].classList.remove('snake'))
+    squares[apple].classList.remove('apple')
+    snake = []
+    apple = 0;
+    start.style.display = 'block'
+    restart.style.display = 'none'
 }
 
 document.addEventListener('keydown', control)
 
-start.addEventListener('click', startGame)
+startBtn.addEventListener('click', startGame)
+restartBtn.addEventListener('click', restartGame)

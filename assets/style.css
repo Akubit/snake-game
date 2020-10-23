@@ -29,3 +29,7 @@
     box-shadow: inset var(--green2) 1vmin 1vmin, inset var(--green2) -1vmin -1vmin ;
     background-color: var(--green3);
  }
+
+ #restart {
+    display: none;
+ }
