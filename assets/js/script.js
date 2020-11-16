@@ -86,18 +86,20 @@ function control(e) {
     console.log(snakeDir)
     switch (e.keyCode) {
         case 37: //left
-            direction = direction === 1  ?  1 : -1
+            direction = direction === 1 || snakeDir === -1 ?  1 : -1
             break;
         case 38: //up
-            direction = direction === area ? area : -area
+            direction = direction === area || snakeDir === -area ? area : -area
             break; 
         case 39: //right
-            direction = direction === -1 ?  -1 : 1
+            direction = direction === -1 || snakeDir === 1 ?  -1 : 1
             break; 
         case 40: // down
-        direction = direction === -area ? -area : area
+        direction = direction === -area || snakeDir === area ? -area : area
             break;
     }
+    
+
 }
 
 //Start Game 
@@ -107,7 +109,6 @@ function startGame () {
     direction = 1
     speed = 300
     points = 0
-    score.textContent = points
     apple = randomApple()
     snake.forEach(index => squares[index].classList.add('snake'))
     timerId = setInterval(move, speed)
@@ -115,7 +116,7 @@ function startGame () {
     start.style.display = 'none'
 }
 
-//Restart Game 
+//Start Game 
 function restartGame () {
     //Snake creation
     snake.forEach(index => squares[index].classList.remove('snake'))
