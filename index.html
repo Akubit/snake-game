@@ -4,17 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Karla&family=VT323&display=swap" rel="stylesheet">
     <title>Snake Game</title>
 </head>
 <body>
-    <div id="screen">
-        <div id='hub'><h2>Score : <span id="score">0</span></h2></div>
-        <div id="start"><button id="startBtn">Start</button></div>
-        <div id="restart"><button id="restartBtn">Restart</button></div>
-        <div class="grid">
-          
+    <div id="cover">
+        <div id="matrix">DOT MATRIX WITH STEREO SOUND</div>
+        <div id="battery">
+            •
+            <span>battery</span>
+        </div>
+        <div id="screen">
+            <div id='hub'>
+                <div class="score">
+                    <h2 class="points">Score<span id="score">0</span></h2>
+                    <h2 class="points">Highscore<span id="highscore">0</span></h2>
+                </div>
+                <div class="actions">
+                    <div id="start"><button id="startBtn">Start</button></div>
+                    <div id="restart"><button id="restartBtn">Restart</button></div>
+                </div>
+            </div>
+            <div class="grid"></div>
         </div>
     </div>
-    <script src="assets/script.js"></script>
+    <audio id="collect" src="assets/audio/collect.wav"></audio>
+    <audio id="death" src="assets/audio/death.wav"></audio>
+    <script src="assets/js/script.js"></script>
 </body>
 </html>

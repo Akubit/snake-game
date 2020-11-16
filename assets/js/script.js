@@ -5,6 +5,8 @@ const restart = document.getElementById("restart")
 const startBtn = document.getElementById("startBtn")
 const restartBtn = document.getElementById("restartBtn")
 const score = document.getElementById("score")
+const collect = document.getElementById("collect")
+const death = document.getElementById("death")
 const area = 15
 let squares = []
 let snake = [2,1,0]
@@ -36,6 +38,8 @@ function move() {
         (snake[0] % area) === 0 && direction === -1 ||
         (squares[snake[0] + direction].classList.contains('snake'))
         ){
+            death.currentTime = 0;
+            death.play();
             console.log('Perdu !')
             restart.style.display = 'block'
             return clearInterval(timerId)
@@ -46,6 +50,8 @@ function move() {
     snake.unshift(snake[0] + direction)
      
     if (snake[0] === apple) {
+        collect.currentTime = 0;
+        collect.play();
         squares[apple].classList.remove('apple')
         squares[tail].classList.add('snake')
         snake.push(tail)
