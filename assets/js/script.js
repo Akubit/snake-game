@@ -11,7 +11,7 @@ const area = 15
 let squares = []
 let snake = [2,1,0]
 let direction = 1
-let speed = 666
+let speed = 300
 let points = 0
 let apple = randomApple()
 let timerId
@@ -32,6 +32,7 @@ createGrid()
 
 //Move
 function move() {
+    console.log(speed)
     if( (snake[0] - area < 0 && direction === -area) || 
         (snake[0] + area >= (area * area) && direction === area) ||
         (snake[0] % area === (area-1) && direction === 1) || 
@@ -59,7 +60,7 @@ function move() {
         points++
         score.textContent = points
         clearInterval(timerId)
-        speed = speed * 0.9
+        speed = speed * 0.99
         timerId = setInterval(move, speed)
         console.log(speed)
     }
@@ -81,9 +82,11 @@ function randomApple() {
 
 // D-pad controls
 function control(e) {
+    let snakeDir = snake[1]-snake[0]
+    console.log(snakeDir)
     switch (e.keyCode) {
         case 37: //left
-            direction = direction === 1 ?  1 : -1
+            direction = direction === 1  ?  1 : -1
             break;
         case 38: //up
             direction = direction === area ? area : -area
@@ -102,8 +105,9 @@ function startGame () {
     //Snake creation
     snake = [2,1,0]
     direction = 1
-    speed = 666
+    speed = 300
     points = 0
+    score.textContent = points
     apple = randomApple()
     snake.forEach(index => squares[index].classList.add('snake'))
     timerId = setInterval(move, speed)
@@ -111,7 +115,7 @@ function startGame () {
     start.style.display = 'none'
 }
 
-//Start Game 
+//Restart Game 
 function restartGame () {
     //Snake creation
     snake.forEach(index => squares[index].classList.remove('snake'))
