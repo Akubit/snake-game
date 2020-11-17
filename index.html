@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Karla&family=VT323&display=swap" rel="stylesheet">
     <title>Snake Game</title>
 </head>
@@ -22,16 +19,32 @@
             <div id='hub'>
                 <div class="score">
                     <h2 class="points">Score<span id="score">0</span></h2>
-                    <h2 class="points">Highscore<span id="highscore">0</span></h2>
+                    <h2 class="points">Highscore<span id="highscore"></span></h2>
                 </div>
                 <div class="actions">
-                    <div id="start"><button id="startBtn">Start</button></div>
-                    <div id="restart"><button id="restartBtn">Restart</button></div>
+                    <button id="music"><span>MUSIC</span><span id="music-status"></span></button>
+                    <button id="sfx"><span>SOUND</span><span id="sound-status"></span></button>
                 </div>
             </div>
             <div class="grid"></div>
+            <div class="modal" id="start">
+                <div>
+                    <h1>Snake Game</h1>
+                    <button id="startBtn">Start</button></div>
+            </div>
+            <div class="modal" id="restart">
+                <div>
+                    <h1>Game Over</h1>
+                    <div id="gameOverScore"></div>
+                    <button id="restartBtn">Restart</button></div>
+            </div>
         </div>
     </div>
+    <div id="credits">Credits: 
+        <span class="close">X</span>
+        Music : <a href="https://freemusicarchive.org/music/Receptors/groKwork/Subway_Panoramic_gameboy_Korg_DS10">Subway Panoramic (gameboy Korg DS10) </a> by <a href="http://www.receptorsmusic.com/">Receptors</a>
+    </div>
+    
     <audio id="collect" src="assets/audio/collect.wav"></audio>
     <audio id="death" src="assets/audio/death.wav"></audio>
     <script src="assets/js/script.js"></script>

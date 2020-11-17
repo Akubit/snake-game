@@ -5,14 +5,17 @@ const restart = document.getElementById("restart")
 const startBtn = document.getElementById("startBtn")
 const restartBtn = document.getElementById("restartBtn")
 const score = document.getElementById("score")
+const highscore = document.getElementById("highscore")
 const collect = document.getElementById("collect")
 const death = document.getElementById("death")
+const gameOverScore = document.getElementById("gameOverScore")
 const area = 15
 let squares = []
 let snake = [2,1,0]
 let direction = 1
 let speed = 300
 let points = 0
+let highPoints = localStorage.getItem("akubit-snake-highscore")
 let apple = randomApple()
 let timerId
 
@@ -29,10 +32,17 @@ function createGrid () {
 }
 createGrid()
 
+// init 
+function init () {
+    if (highPoints === null) {
+        localStorage.setItem("akubit-snake-highscore", 0)
+        highPoints = localStorage.getItem("akubit-snake-highscore")
+    } 
+    highscore.textContent = highPoints
+}
 
 //Move
 function move() {
-    console.log(speed)
     if( (snake[0] - area < 0 && direction === -area) || 
         (snake[0] + area >= (area * area) && direction === area) ||
         (snake[0] % area === (area-1) && direction === 1) || 
@@ -41,11 +51,19 @@ function move() {
         ){
             death.currentTime = 0;
             death.play();
-            console.log('Perdu !')
-            restart.style.display = 'block'
+            restart.style.display = 'flex'
+            if (points > highPoints) {
+                localStorage.setItem("akubit-snake-highscore", points)
+                gameOverScore.innerText = `NEW HIGHSCORE !
+                ${points}`
+            } else {
+                gameOverScore.innerText = `SCORE
+                ${points}`
+            }
             return clearInterval(timerId)
         }
 
+    highPoints = localStorage.getItem('akubit-snake-highscore')
     let tail = snake.pop()
     squares[tail].classList.remove('snake')
     snake.unshift(snake[0] + direction)
@@ -58,14 +76,15 @@ function move() {
         snake.push(tail)
         createApples()
         points++
+        if (points > highPoints) {
+            highscore.textContent = points
+        }
         score.textContent = points
         clearInterval(timerId)
-        speed = speed * 0.99
+        speed = speed * 0.985
         timerId = setInterval(move, speed)
-        console.log(speed)
     }
     squares[snake[0]].classList.add('snake')
-    console.log(snake)
 }
 
 //Apple generation
@@ -83,7 +102,6 @@ function randomApple() {
 // D-pad controls
 function control(e) {
     let snakeDir = snake[1]-snake[0]
-    console.log(snakeDir)
     switch (e.keyCode) {
         case 37: //left
             direction = direction === 1 || snakeDir === -1 ?  1 : -1
@@ -110,6 +128,7 @@ function startGame () {
     speed = 300
     points = 0
     apple = randomApple()
+    score.textContent = points
     snake.forEach(index => squares[index].classList.add('snake'))
     timerId = setInterval(move, speed)
     createApples()
@@ -123,10 +142,11 @@ function restartGame () {
     squares[apple].classList.remove('apple')
     snake = []
     apple = 0;
-    start.style.display = 'block'
     restart.style.display = 'none'
+    startGame()
 }
 
+init()
 document.addEventListener('keydown', control)
 
 startBtn.addEventListener('click', startGame)

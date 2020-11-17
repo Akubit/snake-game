@@ -94,6 +94,9 @@
    display: flex;
    background-color: var(--green4);
    justify-content: center; 
+   position: relative;
+   box-shadow: inset 2px 2px 10px black;
+   padding: 1vmin;
  }
 
  #hub {
@@ -162,3 +165,58 @@
  .actions button:hover {
     background-color: var(--green3);
  }
+
+ .modal {
+   position: absolute;
+   left: 0;
+   top: 0;
+   height: 100%;
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background:linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2))
+}
+
+.modal > div {
+   background-color: var(--green1);
+   color: var(--green4);
+   border: 2vmin solid var(--green4);
+   box-shadow: 5px 5px 10px black;
+   height: 75%;
+   width: 60%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: space-around;
+   font-family: var(--mono);
+   text-transform: uppercase;
+   text-align: center;
+   font-size: calc(32px + (32 - 20) * ((100vw - 300px) / (1600 - 300)));
+}
+
+.modal h1 {
+   font-size: calc(51px + (32 - 20) * ((100vw - 300px) / (1600 - 300)));
+}
+.modal button {
+   font-size: calc(51px + (32 - 20) * ((100vw - 300px) / (1600 - 300)));
+   background-color: var(--green1);
+   color: var(--green4);
+   border: 1vmin solid var(--green4);
+   font-family: var(--mono);
+   padding: 0.5vmin 3vmin;
+   text-transform: uppercase;
+}
+
+#credits {
+   position: absolute;
+   bottom: 0;
+   left: 0;
+   color: var(--grey2);
+   font-family: var(--sans);
+   padding: 0.5vmin;
+   font-size: calc(5px + (26 - 20) * ((100vw - 300px) / (1600 - 300)));
+}
+#credits a {
+   color: var(--grey2);
+}
